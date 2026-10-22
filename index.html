@@ -14,18 +14,18 @@
 <style>
 /* =========================================================
    1. DESIGN TOKENS
-   Univers "industrie de précision", palette alignée sur direct.fr :
-   bleu institutionnel profond + rouge signal pour les CTA.
-   Pour caler les codes exacts de la charte, modifier uniquement ce bloc.
+   Univers "industrie de précision", palette issue du logo DIRECT :
+   bleu marine #212E5C + vert-gris #7E9891 (couleurs exactes du logo).
+   Pour ajuster la charte, modifier uniquement ce bloc.
    Tous les textes respectent un contraste AA minimum (aucun gris pâle).
    ========================================================= */
 :root {
   /* Bleus de marque (du plus sombre au plus clair) */
-  --navy-950: #061535;
-  --navy-900: #0A2150;
-  --navy-800: #10306E;
-  --navy-700: #1A4190;
-  --navy-600: #2457B8;
+  --navy-950: #151E3F;       /* marine profond : fonds hero, footer */
+  --navy-900: #212E5C;       /* marine du logo */
+  --navy-800: #2A3A72;
+  --navy-700: #354888;
+  --navy-600: #4659A0;
   --line-dark: rgba(255,255,255,0.10);
 
   --paper: #F4F6F9;
@@ -37,13 +37,15 @@
   --on-dark: #FFFFFF;      /* texte principal sur fond sombre */
   --on-dark-2: #C7D2E2;    /* texte secondaire sur fond sombre, contraste 11:1 */
 
-  /* Rouge signal : fonds de boutons et détails */
-  --accent: #E42313;
-  --accent-strong: #C41A0C;       /* rouge en texte sur fond clair (contraste 6.6:1) */
-  --accent-text-dark: #FF6A5C;    /* rouge en texte ou trait fin sur fond sombre (contraste 6:1) */
-  --accent-soft: rgba(228,35,19,0.12);
-  --accent-glow: rgba(228,35,19,0.42);
-  --on-accent: #FFFFFF;           /* texte sur fond rouge */
+  /* Vert-gris du logo : boutons, détails, traits */
+  --accent: #7E9891;              /* vert-gris exact du logo, aplats et traits */
+  --accent-btn: #849E97;          /* fond des boutons, texte marine (contraste 4.6:1) */
+  --accent-btn-hover: #95ADA6;
+  --accent-strong: #4C6861;       /* vert-gris en texte sur fond clair (contraste 6:1) */
+  --accent-text-dark: #A9C0B9;    /* vert-gris en texte ou trait fin sur fond sombre (contraste 8:1) */
+  --accent-soft: rgba(126,152,145,0.16);
+  --accent-glow: rgba(126,152,145,0.45);
+  --on-accent: #212E5C;           /* texte marine sur fond vert-gris */
 
   --font-display: "Space Grotesk", "Manrope", system-ui, sans-serif;
   --font-body: "Manrope", system-ui, -apple-system, sans-serif;
@@ -108,8 +110,8 @@ svg { display: block; }
   white-space: nowrap;
 }
 .btn:active { transform: translateY(1px) scale(.99); }
-.btn-primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
-.btn-primary:hover { background: #F0311F; box-shadow: 0 10px 28px var(--accent-glow); transform: translateY(-2px); }
+.btn-primary { background: var(--accent-btn); color: var(--on-accent); border-color: var(--accent-btn); }
+.btn-primary:hover { background: var(--accent-btn-hover); box-shadow: 0 10px 28px var(--accent-glow); transform: translateY(-2px); }
 .btn-outline-dark { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.35); }
 .btn-outline-dark:hover { border-color: var(--white); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
 .btn-outline { background: transparent; color: var(--ink); border-color: var(--ink); }
@@ -142,7 +144,7 @@ svg { display: block; }
 .topbar a:hover { color: var(--white); }
 .topbar .phone { font-family: var(--font-mono); font-weight: 600; color: var(--white); letter-spacing: .02em; }
 .topbar .dot { width: 6px; height: 6px; border-radius: 50%; background: #3DDC84; box-shadow: 0 0 0 3px rgba(61,220,132,0.2); }
-.topbar .cart-count { font-family: var(--font-mono); font-size: 11px; background: var(--accent); color: var(--on-accent); border-radius: 999px; padding: 1px 6px; font-weight: 600; }
+.topbar .cart-count { font-family: var(--font-mono); font-size: 11px; background: var(--accent-btn); color: var(--on-accent); border-radius: 999px; padding: 1px 6px; font-weight: 600; }
 .topbar svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
 /* =========================================================
@@ -160,14 +162,14 @@ svg { display: block; }
 .header.is-compact { background: rgba(7,13,24,0.94); box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
 
 /* Logo recréé en typographie */
-.logo { display: inline-flex; align-items: center; gap: 12px; color: var(--white); }
-.logo-mark { width: 40px; height: 40px; flex: none; transition: width .3s var(--ease), height .3s var(--ease); }
-.header.is-compact .logo-mark { width: 34px; height: 34px; }
-.logo-text { display: flex; flex-direction: column; line-height: 1; }
-.logo-word { font-family: var(--font-display); font-weight: 700; font-size: 26px; letter-spacing: 0.08em; }
-.logo-word span { color: var(--accent-text-dark); }
-.logo-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); margin-top: 5px; transition: opacity .2s, height .3s; }
+/* Logo officiel DIRECT vectorisé (symbole #logo-direct en fin de page).
+   Les lettres héritent de currentColor : blanc sur fond sombre, marine sur fond clair. */
+.logo { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 6px; color: var(--white); }
+.logo-mark { width: 176px; height: auto; flex: none; transition: width .3s var(--ease); }
+.header.is-compact .logo-mark { width: 150px; }
+.logo-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); transition: opacity .2s, height .3s; }
 .header.is-compact .logo-tag { opacity: 0; height: 0; margin: 0; overflow: hidden; }
+.footer .logo-mark { width: 200px; }
 
 .nav ul { display: flex; gap: 6px; }
 .nav a {
@@ -197,8 +199,8 @@ svg { display: block; }
    ========================================================= */
 .hero {
   position: relative; overflow: hidden;
-  background: radial-gradient(1200px 600px at 80% 10%, rgba(228,35,19,0.12), transparent 60%),
-              radial-gradient(900px 500px at 10% 90%, rgba(36,87,184,0.38), transparent 60%),
+  background: radial-gradient(1200px 600px at 80% 10%, rgba(126,152,145,0.22), transparent 60%),
+              radial-gradient(900px 500px at 10% 90%, rgba(70,89,160,0.45), transparent 60%),
               linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 100%);
   color: var(--on-dark);
   min-height: calc(100vh - 122px);
@@ -217,7 +219,7 @@ svg { display: block; }
 .hero .container { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; padding: 72px 0 88px; }
 .hero-kicker { display: inline-flex; align-items: center; gap: 10px; padding: 7px 12px 7px 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.05); font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark-2); }
 .hero-kicker .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 var(--accent-glow); animation: pulse 2s infinite; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent-glow); } 70% { box-shadow: 0 0 0 10px rgba(228,35,19,0); } 100% { box-shadow: 0 0 0 0 rgba(228,35,19,0); } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent-glow); } 70% { box-shadow: 0 0 0 10px rgba(126,152,145,0); } 100% { box-shadow: 0 0 0 0 rgba(126,152,145,0); } }
 
 .hero h1 { font-size: clamp(36px, 5.2vw, 64px); font-weight: 700; margin-top: 22px; letter-spacing: -0.025em; }
 .hero h1 .accent { color: var(--accent-text-dark); }
@@ -239,7 +241,7 @@ svg { display: block; }
 .search-box button { padding: 13px 22px; }
 .search-hints { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; font-size: 13px; color: var(--on-dark-2); }
 .search-hints .chip { font-family: var(--font-mono); font-size: 12px; padding: 5px 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: var(--white); background: rgba(255,255,255,0.04); transition: border-color .2s, background .2s; }
-.search-hints .chip:hover { border-color: var(--accent-text-dark); background: rgba(228,35,19,0.18); }
+.search-hints .chip:hover { border-color: var(--accent-text-dark); background: rgba(126,152,145,0.22); }
 
 .hero-ctas { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
 
@@ -324,8 +326,8 @@ svg { display: block; }
 .family-icon svg { width: 32px; height: 32px; stroke: var(--white); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .family-icon svg .fill { fill: var(--accent); stroke: none; }
 .family-card:hover .family-icon { background: var(--accent); transform: rotate(-4deg) scale(1.04); }
-.family-card:hover .family-icon svg { stroke: var(--white); }
-.family-card:hover .family-icon svg .fill { fill: var(--white); }
+.family-card:hover .family-icon svg { stroke: var(--navy-900); }
+.family-card:hover .family-icon svg .fill { fill: var(--navy-900); }
 .family-card h3 { font-size: 19px; margin-top: 20px; }
 .family-card ul { margin-top: 14px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
 .family-card li { font-size: 14px; color: var(--ink-2); font-weight: 500; display: flex; gap: 8px; align-items: flex-start; }
@@ -348,7 +350,7 @@ svg { display: block; }
   border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; justify-content: flex-end;
   transition: transform .4s var(--ease), border-color .4s, box-shadow .4s var(--ease);
 }
-.sector:hover { transform: translateY(-6px); border-color: rgba(255,106,92,0.7); box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+.sector:hover { transform: translateY(-6px); border-color: rgba(169,192,185,0.7); box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
 .sector-art { position: absolute; top: 18px; right: 18px; width: 120px; height: 120px; opacity: .9; transition: transform .5s var(--ease); }
 .sector:hover .sector-art { transform: scale(1.08) rotate(-3deg); }
 .sector-art svg { width: 100%; height: 100%; stroke: var(--accent-text-dark); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
@@ -377,6 +379,9 @@ svg { display: block; }
 .badge:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: var(--accent); background: var(--white); }
 .badge-seal { flex: none; width: 64px; height: 64px; }
 .badge-seal svg { width: 100%; height: 100%; }
+.badge-seal .seal-bg { fill: var(--navy-900); }
+.badge-seal .seal-accent { stroke: var(--accent-text-dark); }
+.badge-seal .seal-accent-fill { fill: var(--accent-text-dark); }
 .badge h3 { font-size: 17px; }
 .badge .scope { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-strong); font-weight: 600; margin-top: 2px; }
 .badge p { font-size: 14px; color: var(--ink-2); margin-top: 8px; }
@@ -425,7 +430,7 @@ svg { display: block; }
   border: 2px dashed rgba(255,255,255,0.3); border-radius: 14px; padding: 34px 20px; text-align: center;
   background: rgba(255,255,255,0.03); transition: border-color .25s, background .25s, transform .25s var(--ease); cursor: pointer;
 }
-.dropzone:hover, .dropzone.is-over { border-color: var(--accent-text-dark); background: rgba(228,35,19,0.16); transform: scale(1.01); }
+.dropzone:hover, .dropzone.is-over { border-color: var(--accent-text-dark); background: rgba(126,152,145,0.2); transform: scale(1.01); }
 .dropzone-icon { width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 14px; background: rgba(255,255,255,0.08); display: grid; place-items: center; }
 .dropzone-icon svg { width: 28px; height: 28px; stroke: var(--accent-text-dark); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .dropzone strong { display: block; font-family: var(--font-display); font-size: 17px; }
@@ -458,7 +463,7 @@ svg { display: block; }
 .phone-big { display: flex; align-items: center; gap: 18px; padding: 22px 24px; border-radius: 16px; background: var(--navy-950); color: var(--white); transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
 .phone-big:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(11,21,38,0.3); }
 .phone-big .ico { width: 52px; height: 52px; border-radius: 12px; background: var(--accent); display: grid; place-items: center; flex: none; }
-.phone-big .ico svg { width: 24px; height: 24px; stroke: var(--white); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.phone-big .ico svg { width: 24px; height: 24px; stroke: var(--navy-900); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .phone-big .num { font-family: var(--font-mono); font-size: 26px; font-weight: 600; letter-spacing: .02em; line-height: 1; }
 .phone-big .hrs { font-size: 13px; color: var(--on-dark-2); margin-top: 6px; }
 .callback { display: flex; gap: 10px; }
@@ -544,7 +549,7 @@ svg { display: block; }
 @media (max-width: 680px) {
   .topbar .hours, .topbar .login-label { display: none; }
   .header .container { height: 70px; }
-  .logo-word { font-size: 22px; }
+  .logo-mark { width: 140px; }
   .header .logo-tag { display: none; }
   .phone-big { padding: 18px; gap: 14px; }
   .phone-big .ico { width: 44px; height: 44px; }
@@ -623,21 +628,9 @@ svg { display: block; }
 <header class="header" id="header">
   <div class="container">
     <a class="logo" href="#" aria-label="DIRECT, accueil">
-      <!-- Logo recréé : connecteur stylisé + wordmark -->
-      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
-        <rect x="2" y="2" width="36" height="36" rx="9" fill="#E42313"/>
-        <circle cx="20" cy="20" r="11" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
-        <circle cx="20" cy="13.5" r="1.9" fill="#FFFFFF"/>
-        <circle cx="26.5" cy="20" r="1.9" fill="#FFFFFF"/>
-        <circle cx="20" cy="26.5" r="1.9" fill="#FFFFFF"/>
-        <circle cx="13.5" cy="20" r="1.9" fill="#FFFFFF"/>
-        <circle cx="20" cy="20" r="2.4" fill="#FFFFFF"/>
-        <path d="M20 2v4" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-text">
-        <span class="logo-word">DIRECT<span>.</span></span>
-        <span class="logo-tag">Distributeur industriel depuis 1965</span>
-      </span>
+      <!-- Logo officiel DIRECT (vectorisé, symbole défini en fin de page) -->
+      <svg class="logo-mark" viewBox="0 0 2000 410" aria-hidden="true"><use href="#logo-direct"/></svg>
+      <span class="logo-tag">Distributeur industriel depuis 1965</span>
     </a>
 
     <nav class="nav" aria-label="Navigation principale">
@@ -713,8 +706,8 @@ svg { display: block; }
             <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
           <radialGradient id="body" cx="40%" cy="35%" r="70%">
-            <stop offset="0%" stop-color="#24407A"/>
-            <stop offset="100%" stop-color="#0A1E48"/>
+            <stop offset="0%" stop-color="#3A4C82"/>
+            <stop offset="100%" stop-color="#1A2550"/>
           </radialGradient>
           <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stop-color="#8A9BB8"/>
@@ -764,11 +757,11 @@ svg { display: block; }
         </g>
         <!-- Bague -->
         <circle cx="260" cy="260" r="140" fill="url(#ring)"/>
-        <circle cx="260" cy="260" r="126" fill="#0A2150"/>
+        <circle cx="260" cy="260" r="126" fill="#1A2550"/>
         <!-- Face isolante -->
         <circle cx="260" cy="260" r="112" fill="url(#body)" stroke="#55678A" stroke-width="2"/>
         <!-- Détrompeur (codage A) -->
-        <path d="M248 150 h24 v18 a12 12 0 0 1 -24 0z" fill="#0A2150" stroke="#55678A" stroke-width="2"/>
+        <path d="M248 150 h24 v18 a12 12 0 0 1 -24 0z" fill="#1A2550" stroke="#55678A" stroke-width="2"/>
 
         <!-- Broches : 8 en couronne + 1 au centre -->
         <g>
@@ -993,7 +986,7 @@ svg { display: block; }
       <div class="badge-grid">
         <div class="badge reveal">
           <div class="badge-seal">
-            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#0A2150"/><circle cx="32" cy="32" r="24" fill="none" stroke="#FF6A5C" stroke-width="1.5" stroke-dasharray="3 3"/><text x="32" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#fff">EN</text><text x="32" y="43" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#FF6A5C">9120</text></svg>
+            <svg viewBox="0 0 64 64"><circle class="seal-bg" cx="32" cy="32" r="30"/><circle cx="32" cy="32" r="24" fill="none" class="seal-accent" stroke-width="1.5" stroke-dasharray="3 3"/><text x="32" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#fff">EN</text><text x="32" y="43" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" class="seal-accent-fill">9120</text></svg>
           </div>
           <div>
             <h3>EN 9120</h3>
@@ -1004,7 +997,7 @@ svg { display: block; }
         </div>
         <div class="badge reveal" data-delay="1">
           <div class="badge-seal">
-            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#0A2150"/><circle cx="32" cy="32" r="24" fill="none" stroke="#FF6A5C" stroke-width="1.5" stroke-dasharray="3 3"/><text x="32" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#fff">ISO</text><text x="32" y="43" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#FF6A5C">9001</text></svg>
+            <svg viewBox="0 0 64 64"><circle class="seal-bg" cx="32" cy="32" r="30"/><circle cx="32" cy="32" r="24" fill="none" class="seal-accent" stroke-width="1.5" stroke-dasharray="3 3"/><text x="32" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#fff">ISO</text><text x="32" y="43" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" class="seal-accent-fill">9001</text></svg>
           </div>
           <div>
             <h3>ISO 9001</h3>
@@ -1015,7 +1008,7 @@ svg { display: block; }
         </div>
         <div class="badge reveal" data-delay="2">
           <div class="badge-seal">
-            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#0A2150"/><path d="M32 14c8 6 14 14 14 22a14 14 0 0 1-28 0c0-8 6-16 14-22z" fill="none" stroke="#FF6A5C" stroke-width="2"/><path d="M32 22v26M32 34c-4-2-7-5-7-9M32 40c4-2 7-5 7-9" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 64 64"><circle class="seal-bg" cx="32" cy="32" r="30"/><path d="M32 14c8 6 14 14 14 22a14 14 0 0 1-28 0c0-8 6-16 14-22z" fill="none" class="seal-accent" stroke-width="2"/><path d="M32 22v26M32 34c-4-2-7-5-7-9M32 40c4-2 7-5 7-9" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
           </div>
           <div>
             <h3>EcoVadis</h3>
@@ -1026,7 +1019,7 @@ svg { display: block; }
         </div>
         <div class="badge reveal" data-delay="3">
           <div class="badge-seal">
-            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#0A2150"/><path d="M20 32l8 8 16-16" fill="none" stroke="#FF6A5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="32" r="22" fill="none" stroke="#fff" stroke-width="1.5"/></svg>
+            <svg viewBox="0 0 64 64"><circle class="seal-bg" cx="32" cy="32" r="30"/><path d="M20 32l8 8 16-16" fill="none" class="seal-accent" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="32" r="22" fill="none" stroke="#fff" stroke-width="1.5"/></svg>
           </div>
           <div>
             <h3>RoHS et REACH</h3>
@@ -1037,7 +1030,7 @@ svg { display: block; }
         </div>
         <div class="badge reveal" data-delay="4">
           <div class="badge-seal">
-            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#0A2150"/><path d="M32 14l16 9v18l-16 9-16-9V23z" fill="none" stroke="#FF6A5C" stroke-width="2" stroke-linejoin="round"/><path d="M32 23v18M24 27.5l8 4.5 8-4.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 64 64"><circle class="seal-bg" cx="32" cy="32" r="30"/><path d="M32 14l16 9v18l-16 9-16-9V23z" fill="none" class="seal-accent" stroke-width="2" stroke-linejoin="round"/><path d="M32 23v18M24 27.5l8 4.5 8-4.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
           </div>
           <div>
             <h3>Minerais de conflit</h3>
@@ -1048,7 +1041,7 @@ svg { display: block; }
         </div>
         <div class="badge reveal" data-delay="4">
           <div class="badge-seal">
-            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#0A2150"/><rect x="18" y="20" width="28" height="24" rx="3" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M24 28h16M24 34h10" stroke="#FF6A5C" stroke-width="2" stroke-linecap="round"/><circle cx="40" cy="38" r="3" fill="#FF6A5C"/></svg>
+            <svg viewBox="0 0 64 64"><circle class="seal-bg" cx="32" cy="32" r="30"/><rect x="18" y="20" width="28" height="24" rx="3" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M24 28h16M24 34h10" class="seal-accent" stroke-width="2" stroke-linecap="round"/><circle cx="40" cy="38" r="3" class="seal-accent-fill"/></svg>
           </div>
           <div>
             <h3>Traçabilité produit</h3>
@@ -1219,13 +1212,8 @@ svg { display: block; }
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="logo" href="#" aria-label="DIRECT, accueil">
-          <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
-            <rect x="2" y="2" width="36" height="36" rx="9" fill="#E42313"/>
-            <circle cx="20" cy="20" r="11" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
-            <circle cx="20" cy="13.5" r="1.9" fill="#FFFFFF"/><circle cx="26.5" cy="20" r="1.9" fill="#FFFFFF"/><circle cx="20" cy="26.5" r="1.9" fill="#FFFFFF"/><circle cx="13.5" cy="20" r="1.9" fill="#FFFFFF"/><circle cx="20" cy="20" r="2.4" fill="#FFFFFF"/>
-            <path d="M20 2v4" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
-          </svg>
-          <span class="logo-text"><span class="logo-word">DIRECT<span>.</span></span><span class="logo-tag">Distributeur industriel depuis 1965</span></span>
+          <svg class="logo-mark" viewBox="0 0 2000 410" aria-hidden="true"><use href="#logo-direct"/></svg>
+          <span class="logo-tag">Distributeur industriel depuis 1965</span>
         </a>
         <p>Distributeur indépendant de connectique, câblage, alimentations et composants d'automatisme pour l'électronique industrielle.</p>
         <address>
@@ -1297,6 +1285,15 @@ svg { display: block; }
   <a class="btn btn-outline-dark" href="tel:+33232102343">Appeler</a>
   <a class="btn btn-primary" href="#devis">Devis express</a>
 </div>
+
+<!-- Logo officiel DIRECT, vectorisé depuis le fichier fourni (2 couleurs : marine #212E5C, vert-gris #7E9891).
+     Les lettres utilisent currentColor pour s'adapter au fond. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo-direct" viewBox="0 0 2000 410">
+    <path fill="currentColor" fill-rule="evenodd" d="M1470 387C1392 376 1352 310 1370 223C1387 138 1451 75 1532 62C1544 60 1584 60 1595 62C1639 71 1669 95 1682 130C1687 144 1689 158 1688 179L1688 186L1648 186L1609 186L1609 182C1609 130 1529 115 1483 158C1461 179 1447 214 1447 250C1446 284 1460 304 1489 312C1504 316 1531 315 1547 309C1571 300 1591 281 1597 264L1598 261L1637 261C1669 261 1676 261 1676 262C1676 263 1675 267 1673 270C1642 350 1558 398 1470 387ZM1102 377C1103 375 1105 366 1107 356C1109 346 1111 334 1112 328L1115 318L1215 317L1315 317L1314 320C1313 322 1312 329 1311 336C1309 342 1307 353 1305 360C1304 368 1302 375 1302 377L1301 381L1201 381L1102 381L1102 377ZM202 379C202 379 206 372 212 364C218 357 232 339 243 325L262 300L370 300C488 299 479 300 497 294C530 282 551 250 551 208C551 166 532 136 498 125C483 120 476 119 438 118L404 118L424 92C469 34 465 39 468 39C508 39 556 57 584 81C632 123 650 200 628 267C623 283 606 314 603 312C602 312 602 313 602 314C602 317 579 340 567 348C549 360 527 369 508 374C487 379 494 378 344 379C266 379 202 379 202 379ZM683 379C662 379 645 379 645 379C645 378 646 372 648 364C650 357 653 343 654 333C656 323 659 313 659 310C660 306 662 300 662 296C663 291 665 284 666 280C666 277 668 269 669 264C672 250 679 218 680 209C681 205 683 195 685 188C687 180 689 167 691 159C693 151 696 137 698 128C699 118 701 109 702 107L703 104L742 103C763 103 781 103 781 103C781 104 780 109 778 115C777 121 776 126 776 127C776 127 766 127 754 127L732 128L732 134L732 142L753 142C772 142 773 142 773 144C772 145 771 150 770 156C769 161 767 171 766 177C760 203 758 213 754 232C752 243 750 254 749 256C748 261 744 281 737 313C735 324 732 335 732 338C731 340 730 346 729 350C729 353 727 361 726 367C725 373 723 378 723 378C722 379 708 379 683 379ZM1019 379L975 379L954 332L932 284L909 284L886 284L884 298C880 314 877 328 873 350C871 359 869 369 868 373L867 379L827 379C790 379 788 379 788 377C789 376 791 365 794 352C797 338 801 320 803 310C804 301 807 289 808 284C809 279 811 268 813 260C815 252 817 243 817 241C818 239 819 232 820 228C821 223 823 215 823 211C825 203 832 169 834 160C835 157 836 153 836 150C836 148 838 141 839 134C843 118 850 86 852 75L853 67L932 67C1019 68 1018 68 1039 75C1082 89 1101 123 1091 170C1090 176 1089 182 1088 183C1081 219 1055 251 1022 267C1017 269 1013 271 1013 271C1013 272 1016 278 1043 334C1066 380 1065 379 1064 379C1063 379 1043 379 1019 379ZM1754 378C1754 378 1756 368 1758 358C1760 347 1763 336 1763 334C1763 332 1766 322 1768 312C1769 303 1772 292 1773 288C1774 284 1775 279 1775 276C1781 246 1784 233 1785 229C1786 227 1788 216 1790 206C1792 195 1796 178 1798 167C1800 156 1802 146 1803 143C1804 141 1804 139 1804 138C1804 137 1789 137 1762 137C1738 137 1719 137 1719 137C1719 137 1720 132 1721 127C1724 114 1728 95 1730 86C1730 82 1732 76 1732 74L1733 69L1858 69L1982 69L1981 73C1981 75 1980 80 1979 85C1978 90 1976 97 1975 101C1974 110 1969 132 1968 135L1968 137L1925 137L1883 138L1882 141C1881 143 1880 150 1878 157C1875 172 1872 188 1868 209C1861 238 1853 278 1850 290C1849 297 1847 307 1846 312C1845 316 1843 324 1843 328C1838 352 1833 374 1832 376L1832 379L1793 379C1771 379 1754 379 1754 378ZM968 222C990 217 1006 200 1011 175C1014 156 1007 141 990 135C985 133 983 133 951 132C933 132 918 132 918 133C918 133 917 140 915 148C908 183 906 191 903 206C901 214 900 221 899 222C899 225 958 225 968 222ZM1156 120C1158 112 1161 98 1163 88L1167 70L1265 69C1359 69 1364 69 1364 71C1363 72 1357 99 1353 122L1351 133L1252 133L1153 133L1156 120ZM706 88C706 87 707 83 708 78L710 70L749 69C773 69 788 69 788 70C788 70 787 75 786 80L784 89L745 89C714 89 706 89 706 88Z"/>
+    <path fill="#7E9891" fill-rule="evenodd" d="M24 378C26 374 51 343 60 332C72 316 84 300 120 253C136 233 158 204 170 188C244 93 245 91 267 63C274 53 282 44 283 42L285 39L311 39L336 39L333 43C331 46 317 63 303 82C288 101 269 126 261 136C252 148 242 160 239 164C235 169 230 176 227 180C217 193 197 219 165 260C159 267 146 284 136 297C126 310 107 334 95 350L72 379L47 379C28 379 23 379 24 378ZM117 373C121 367 134 350 171 302C205 258 207 256 221 237C230 226 255 193 275 168C282 158 309 123 330 97C332 93 337 87 340 83C344 79 352 68 359 59C366 50 372 42 373 41C374 39 376 39 400 39L425 40L414 53C409 60 403 68 402 70C400 71 396 76 393 81C389 86 386 90 385 91C385 91 382 95 379 99C376 102 371 109 367 114C364 118 356 128 350 136C340 149 311 186 301 199C294 207 267 242 266 244C266 244 253 260 239 279C224 298 209 318 204 323C200 328 189 343 179 356L161 379L136 379L112 379L117 373ZM1286 316C1291 316 1300 316 1306 316C1311 316 1306 317 1296 317C1284 317 1280 316 1286 316ZM383 299C389 299 399 299 404 299C410 299 405 300 394 300C382 300 377 299 383 299ZM1219 269C1220 263 1221 257 1221 256C1221 255 1212 255 1174 255C1130 255 1128 255 1128 253C1128 252 1130 244 1132 234C1133 225 1136 213 1137 208C1138 202 1140 196 1140 194L1141 190L1189 190L1236 190L1238 181C1240 176 1241 172 1241 172C1241 171 1248 178 1256 187C1263 196 1271 205 1272 206C1283 219 1288 225 1288 225C1288 226 1285 228 1281 231C1260 247 1219 279 1217 279C1217 280 1217 276 1219 269ZM915 223C923 223 937 223 945 223C954 223 947 224 930 224C913 224 906 223 915 223ZM418 118C426 118 440 118 448 118C456 118 449 119 432 119C416 119 409 118 418 118Z"/>
+  </symbol>
+</svg>
 
 <script>
 /* =========================================================
