@@ -347,6 +347,50 @@ svg { display: block; }
 .family-count { position: absolute; top: 22px; right: 22px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-2); letter-spacing: .06em; }
 
 /* =========================================================
+   7b. PRODUITS LES PLUS DEMANDÉS
+   ========================================================= */
+.bestsellers { background: var(--white); }
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 48px; }
+.product-card {
+  display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line-light); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-card); transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s;
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); border-color: var(--accent); }
+.product-visual { position: relative; height: 150px; background: linear-gradient(160deg, #EEF2F6, var(--paper)); display: grid; place-items: center; border-bottom: 1px solid var(--line-light); }
+.product-visual::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(33,46,92,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(33,46,92,0.05) 1px, transparent 1px); background-size: 20px 20px; }
+.product-visual svg { position: relative; width: 150px; height: 96px; stroke: var(--navy-900); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .4s var(--ease); }
+.product-card:hover .product-visual svg { transform: scale(1.06); }
+.product-visual .f-light { fill: #FFFFFF; }
+.product-visual .f-grey { fill: #C9D2DD; }
+.product-visual .f-dark { fill: var(--navy-900); stroke: none; }
+.product-visual .f-sage { fill: var(--accent); stroke: none; }
+.product-visual .f-red { fill: #D04A3A; stroke: none; }
+.product-visual .f-black { fill: #2B2F38; stroke: none; }
+.product-visual .f-blue { fill: #3F6FD1; stroke: none; }
+.product-visual .f-yellow { fill: #E7C53B; stroke: none; }
+.product-visual .f-paper { fill: var(--paper); }
+.product-stock { position: absolute; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); background: var(--white); border: 1px solid var(--line-light); border-radius: 6px; padding: 4px 8px; }
+.product-stock i { width: 7px; height: 7px; border-radius: 50%; background: #2E9E6B; }
+.product-body { padding: 18px 18px 16px; display: flex; flex-direction: column; flex: 1; }
+.product-brand { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-strong); font-weight: 600; }
+.product-card h3 { font-size: 17px; margin-top: 6px; line-height: 1.25; }
+.product-spec { font-size: 14px; color: var(--ink-2); margin-top: 6px; margin-bottom: 14px; }
+.product-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: auto; padding-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line-light); font-size: 13px; color: var(--ink-2); }
+.product-meta .ref { font-family: var(--font-mono); font-weight: 600; color: var(--ink); letter-spacing: .02em; }
+.product-meta .ref span { color: var(--ink-2); font-weight: 400; }
+.product-actions { display: flex; gap: 8px; margin-top: 14px; }
+.qty { display: inline-flex; align-items: center; border: 1.5px solid var(--line-light); border-radius: var(--radius-sm); overflow: hidden; }
+.qty button { width: 34px; height: 42px; border: 0; background: var(--paper); color: var(--ink); font-size: 18px; font-weight: 600; transition: background .2s; }
+.qty button:hover { background: #E3E8EF; }
+.qty input { width: 40px; height: 42px; border: 0; text-align: center; font-family: var(--font-mono); font-weight: 600; font-size: 14px; outline: 0; color: var(--ink); -moz-appearance: textfield; }
+.qty input::-webkit-outer-spin-button, .qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.product-actions .btn { flex: 1; padding: 10px 12px; font-size: 14px; }
+.product-actions .btn.is-added { background: #2E9E6B; border-color: #2E9E6B; color: var(--white); }
+.price-note { font-size: 12px; color: var(--ink-2); margin-top: 10px; display: flex; align-items: center; gap: 6px; }
+.price-note svg { width: 14px; height: 14px; stroke: var(--accent-strong); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.price-note a { font-weight: 700; color: var(--ink); border-bottom: 1.5px solid var(--accent); }
+
+/* =========================================================
    8. SECTEURS
    ========================================================= */
 .sectors { background: var(--navy-950); color: var(--white); position: relative; overflow: hidden; }
@@ -535,6 +579,7 @@ svg { display: block; }
    ========================================================= */
 @media (max-width: 1100px) {
   .family-grid { grid-template-columns: repeat(3, 1fr); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
   .sector-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; }
 }
@@ -573,6 +618,7 @@ svg { display: block; }
   .stat-value { font-size: 30px; }
   .family-grid { grid-template-columns: 1fr; }
   .sector-grid { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: 1fr; }
   .sector { min-height: 0; padding-top: 120px; }
   .badge-grid { grid-template-columns: 1fr; }
   .callback, .newsletter-form { flex-direction: column; }
@@ -929,6 +975,214 @@ svg { display: block; }
 </section>
 
 <!-- =========================================================
+     5b. PRODUITS LES PLUS DEMANDÉS
+     Accès direct aux références récurrentes, commandables sans passer par le méga-menu.
+     Les références sont des exemples à remplacer par les données réelles du catalogue.
+     ========================================================= -->
+<section class="section bestsellers" id="plus-demandes">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Les plus demandés</span>
+        <h2 class="section-title">Les références que nos clients commandent le plus.</h2>
+        <p class="section-lead">Un accès direct aux produits récurrents, en stock et commandables en deux clics. Pour tout le reste, la recherche par référence reste le chemin le plus court.</p>
+      </div>
+      <a class="btn btn-outline" href="#catalogue">Tous les produits phares</a>
+    </div>
+    <div class="product-grid">
+      <article class="product-card reveal">
+        <div class="product-visual">
+          <span class="product-stock"><i></i>En stock</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <path class="f-grey" d="M8 40h86a6 6 0 0 1 0 20H8z"/>
+            <path d="M8 40h86a6 6 0 0 1 0 20H8" /><path d="M8 40v20"/>
+            <path class="f-paper" d="M94 40h26a6 6 0 0 1 0 20H94z" stroke="none"/><path d="M94 40h26a6 6 0 0 1 0 20H94" stroke-dasharray="2 2"/>
+            <rect class="f-red" x="118" y="43" width="30" height="5" rx="2.5"/>
+            <rect class="f-black" x="118" y="52" width="30" height="5" rx="2.5"/>
+            <path d="M148 45h6M148 54h6" stroke-width="2"/>
+            <path d="M94 50c6-10 10 10 16 0" stroke-width="1"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-brand">Câble multiconducteur</span>
+          <h3>Câble 2 conducteurs AWG22 gris</h3>
+          <p class="product-spec">300 V, non blindé, UL/CSA, touret de 305 m</p>
+          <div class="product-meta"><span class="ref"><span>Réf.</span> 5002CSL001</span><span>Unité : PI</span></div>
+          <div class="product-actions">
+            <div class="qty"><button type="button" aria-label="Diminuer la quantité" data-step="-1">&minus;</button><input type="number" value="1" min="1" aria-label="Quantité"><button type="button" aria-label="Augmenter la quantité" data-step="1">+</button></div>
+            <button type="button" class="btn btn-dark add-to-cart">Ajouter</button>
+          </div>
+          <p class="price-note"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Prix pro : <a href="#connexion">connectez-vous</a></p>
+        </div>
+      </article>
+      <article class="product-card reveal" data-delay="1">
+        <div class="product-visual">
+          <span class="product-stock"><i></i>En stock</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <rect class="f-grey" x="20" y="40" width="40" height="20" rx="3"/><rect x="20" y="40" width="40" height="20" rx="3"/>
+            <rect class="f-dark" x="60" y="34" width="34" height="32" rx="3"/>
+            <path d="M66 34v32M72 34v32M78 34v32M84 34v32" stroke="#6B7A94" stroke-width="1"/>
+            <rect class="f-light" x="94" y="38" width="30" height="24" rx="2"/><rect x="94" y="38" width="30" height="24" rx="2"/>
+            <circle class="f-light" cx="135" cy="50" r="11"/><circle cx="135" cy="50" r="11"/>
+            <circle class="f-dark" cx="135" cy="44" r="1.8"/><circle class="f-dark" cx="141" cy="50" r="1.8"/><circle class="f-dark" cx="135" cy="56" r="1.8"/><circle class="f-dark" cx="129" cy="50" r="1.8"/>
+            <path d="M8 50h12" stroke-width="3"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-brand">Binder</span>
+          <h3>Connecteur M12 femelle codage A, 4 pôles</h3>
+          <p class="product-spec">Droit, à câbler, IP67, pour capteurs et actionneurs</p>
+          <div class="product-meta"><span class="ref"><span>Réf.</span> 6204M12A004</span><span>Unité : pièce</span></div>
+          <div class="product-actions">
+            <div class="qty"><button type="button" aria-label="Diminuer la quantité" data-step="-1">&minus;</button><input type="number" value="1" min="1" aria-label="Quantité"><button type="button" aria-label="Augmenter la quantité" data-step="1">+</button></div>
+            <button type="button" class="btn btn-dark add-to-cart">Ajouter</button>
+          </div>
+          <p class="price-note"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Prix pro : <a href="#connexion">connectez-vous</a></p>
+        </div>
+      </article>
+      <article class="product-card reveal" data-delay="2">
+        <div class="product-visual">
+          <span class="product-stock"><i></i>En stock</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <path class="f-grey" d="M30 56V34a8 8 0 0 1 8-8h64a8 8 0 0 1 8 8v22z"/><path d="M30 56V34a8 8 0 0 1 8-8h64a8 8 0 0 1 8 8v22"/>
+            <rect class="f-light" x="22" y="56" width="96" height="22" rx="3"/><rect x="22" y="56" width="96" height="22" rx="3"/>
+            <path d="M34 62h72M34 68h72M34 74h72" stroke-dasharray="4 4" stroke-width="1.2"/>
+            <rect class="f-dark" x="60" y="10" width="20" height="16" rx="2"/>
+            <path d="M12 60v14a4 4 0 0 0 4 4h6M128 60v14a4 4 0 0 1-4 4h-6" stroke-width="2"/>
+            <path d="M52 52a8 8 0 0 1 16 0" stroke-width="1.2"/><path d="M72 52a8 8 0 0 1 16 0" stroke-width="1.2"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-brand">Harting</span>
+          <h3>Embase Han 16B avec capot</h3>
+          <p class="product-spec">Taille 16B, sortie latérale M25, IP65</p>
+          <div class="product-meta"><span class="ref"><span>Réf.</span> 6301HAN16B</span><span>Unité : pièce</span></div>
+          <div class="product-actions">
+            <div class="qty"><button type="button" aria-label="Diminuer la quantité" data-step="-1">&minus;</button><input type="number" value="1" min="1" aria-label="Quantité"><button type="button" aria-label="Augmenter la quantité" data-step="1">+</button></div>
+            <button type="button" class="btn btn-dark add-to-cart">Ajouter</button>
+          </div>
+          <p class="price-note"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Prix pro : <a href="#connexion">connectez-vous</a></p>
+        </div>
+      </article>
+      <article class="product-card reveal" data-delay="3">
+        <div class="product-visual">
+          <span class="product-stock"><i></i>En stock</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <path class="f-grey" d="M58 22h44l8 10-8 10H58l-8-10z"/><path d="M58 22h44l8 10-8 10H58l-8-10z"/>
+            <path class="f-light" d="M64 42h32l-4 18H68z"/><path d="M64 42h32l-4 18H68z"/>
+            <rect class="f-grey" x="60" y="60" width="40" height="10" rx="1"/><rect x="60" y="60" width="40" height="10" rx="1"/>
+            <path d="M62 70h36v16H62z" class="f-light"/><path d="M62 70h36v16H62z"/>
+            <path d="M62 74h36M62 78h36M62 82h36" stroke-width="1"/>
+            <path class="f-dark" d="M76 10h8v12h-8z"/>
+            <path d="M70 32h20" stroke-width="1" stroke="#fff"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-brand">Presse-étoupe</span>
+          <h3>Presse-étoupe laiton nickelé M20</h3>
+          <p class="product-spec">Serrage 6 à 12 mm, IP68, joint néoprène</p>
+          <div class="product-meta"><span class="ref"><span>Réf.</span> 5401PEM20N</span><span>Unité : sachet de 10</span></div>
+          <div class="product-actions">
+            <div class="qty"><button type="button" aria-label="Diminuer la quantité" data-step="-1">&minus;</button><input type="number" value="1" min="1" aria-label="Quantité"><button type="button" aria-label="Augmenter la quantité" data-step="1">+</button></div>
+            <button type="button" class="btn btn-dark add-to-cart">Ajouter</button>
+          </div>
+          <p class="price-note"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Prix pro : <a href="#connexion">connectez-vous</a></p>
+        </div>
+      </article>
+      <article class="product-card reveal">
+        <div class="product-visual">
+          <span class="product-stock"><i></i>En stock</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <rect class="f-light" x="50" y="14" width="60" height="72" rx="4"/><rect x="50" y="14" width="60" height="72" rx="4"/>
+            <rect class="f-paper" x="56" y="20" width="48" height="26" rx="2"/><rect x="56" y="20" width="48" height="26" rx="2"/>
+            <circle class="f-sage" cx="64" cy="54" r="3"/><circle class="f-sage" cx="76" cy="54" r="3"/><circle class="f-yellow" cx="88" cy="54" r="3"/>
+            <path d="M58 64h44M58 72h44" stroke-width="1"/>
+            <rect x="56" y="78" width="6" height="4" class="f-dark"/><rect x="66" y="78" width="6" height="4" class="f-dark"/><rect x="76" y="78" width="6" height="4" class="f-dark"/><rect x="86" y="78" width="6" height="4" class="f-dark"/><rect x="96" y="78" width="6" height="4" class="f-dark"/>
+            <path d="M60 30h18M60 36h30" stroke-width="1.2"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-brand">Schmersal</span>
+          <h3>Relais de sécurité 2 canaux 24 V DC</h3>
+          <p class="product-spec">Arrêt d'urgence et protecteurs, 3 contacts NO, PL e</p>
+          <div class="product-meta"><span class="ref"><span>Réf.</span> 7102SRL24D</span><span>Unité : pièce</span></div>
+          <div class="product-actions">
+            <div class="qty"><button type="button" aria-label="Diminuer la quantité" data-step="-1">&minus;</button><input type="number" value="1" min="1" aria-label="Quantité"><button type="button" aria-label="Augmenter la quantité" data-step="1">+</button></div>
+            <button type="button" class="btn btn-dark add-to-cart">Ajouter</button>
+          </div>
+          <p class="price-note"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Prix pro : <a href="#connexion">connectez-vous</a></p>
+        </div>
+      </article>
+      <article class="product-card reveal" data-delay="1">
+        <div class="product-visual">
+          <span class="product-stock"><i></i>En stock</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <rect class="f-light" x="40" y="12" width="80" height="76" rx="4"/><rect x="40" y="12" width="80" height="76" rx="4"/>
+            <path d="M48 20h8M48 26h8M48 32h8M48 38h8M48 44h8M48 50h8" stroke-width="2"/>
+            <path d="M104 20h8M104 26h8M104 32h8M104 38h8M104 44h8M104 50h8" stroke-width="2"/>
+            <rect class="f-paper" x="62" y="20" width="36" height="36" rx="2"/><rect x="62" y="20" width="36" height="36" rx="2"/>
+            <text x="80" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#212E5C" stroke="none">24V</text>
+            <circle class="f-sage" cx="70" cy="64" r="3"/><path d="M78 64h20" stroke-width="1.2"/>
+            <rect x="48" y="74" width="8" height="6" class="f-dark"/><rect x="60" y="74" width="8" height="6" class="f-dark"/><rect x="72" y="74" width="8" height="6" class="f-dark"/><rect x="92" y="74" width="8" height="6" class="f-dark"/><rect x="104" y="74" width="8" height="6" class="f-dark"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-brand">Phoenix Contact</span>
+          <h3>Alimentation rail DIN 24 V DC, 10 A</h3>
+          <p class="product-spec">Entrée 100 à 240 V AC, 240 W, rendement élevé</p>
+          <div class="product-meta"><span class="ref"><span>Réf.</span> 7201PSU2410</span><span>Unité : pièce</span></div>
+          <div class="product-actions">
+            <div class="qty"><button type="button" aria-label="Diminuer la quantité" data-step="-1">&minus;</button><input type="number" value="1" min="1" aria-label="Quantité"><button type="button" aria-label="Augmenter la quantité" data-step="1">+</button></div>
+            <button type="button" class="btn btn-dark add-to-cart">Ajouter</button>
+          </div>
+          <p class="price-note"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Prix pro : <a href="#connexion">connectez-vous</a></p>
+        </div>
+      </article>
+      <article class="product-card reveal" data-delay="2">
+        <div class="product-visual">
+          <span class="product-stock"><i></i>En stock</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <path class="f-light" d="M44 30h72v44H44z"/><path d="M44 30h72v44H44z"/>
+            <path class="f-grey" d="M44 30h72v12H44z"/><path d="M44 42h72"/>
+            <path class="f-yellow" d="M52 42h14v-16a3 3 0 0 1 6 0v16"/><path d="M52 42h14v-16a3 3 0 0 1 6 0v16"/>
+            <path class="f-yellow" d="M94 42h14v-16a3 3 0 0 1 6 0v16"/><path d="M94 42h14v-16a3 3 0 0 1 6 0v16"/>
+            <path d="M44 56h72" stroke-dasharray="3 3" stroke-width="1"/>
+            <rect x="58" y="60" width="8" height="8" class="f-dark"/><rect x="94" y="60" width="8" height="8" class="f-dark"/>
+            <path d="M30 50h14M116 50h14" stroke-width="3"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-brand">WAGO</span>
+          <h3>Borne de passage rail DIN 2,5 mm²</h3>
+          <p class="product-spec">Connexion à ressort, gris, marquage possible</p>
+          <div class="product-meta"><span class="ref"><span>Réf.</span> 7305BRN025</span><span>Unité : boîte de 100</span></div>
+          <div class="product-actions">
+            <div class="qty"><button type="button" aria-label="Diminuer la quantité" data-step="-1">&minus;</button><input type="number" value="1" min="1" aria-label="Quantité"><button type="button" aria-label="Augmenter la quantité" data-step="1">+</button></div>
+            <button type="button" class="btn btn-dark add-to-cart">Ajouter</button>
+          </div>
+          <p class="price-note"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Prix pro : <a href="#connexion">connectez-vous</a></p>
+        </div>
+      </article>
+      <article class="product-card reveal" data-delay="3">
+        <div class="product-visual">
+          <span class="product-stock"><i></i>En stock</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <rect class="f-grey" x="28" y="36" width="22" height="28" rx="2"/><rect x="28" y="36" width="22" height="28" rx="2"/>
+            <rect class="f-grey" x="110" y="36" width="22" height="28" rx="2"/><rect x="110" y="36" width="22" height="28" rx="2"/>
+            <rect class="f-light" x="50" y="40" width="60" height="20" rx="2"/><rect x="50" y="40" width="60" height="20" rx="2"/>
+            <path d="M54 50h8l4-6 6 12 6-12 6 12 6-12 4 6h12" stroke-width="1.4"/>
+            <text x="80" y="76" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#334155" stroke="none">5 x 20 mm</text></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-brand">Schurter</span>
+          <h3>Fusible 5 x 20 mm temporisé 2 A</h3>
+          <p class="product-spec">Verre, 250 V, homologué UL/IEC</p>
+          <div class="product-meta"><span class="ref"><span>Réf.</span> 8101FUS5T2A</span><span>Unité : boîte de 10</span></div>
+          <div class="product-actions">
+            <div class="qty"><button type="button" aria-label="Diminuer la quantité" data-step="-1">&minus;</button><input type="number" value="1" min="1" aria-label="Quantité"><button type="button" aria-label="Augmenter la quantité" data-step="1">+</button></div>
+            <button type="button" class="btn btn-dark add-to-cart">Ajouter</button>
+          </div>
+          <p class="price-note"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Prix pro : <a href="#connexion">connectez-vous</a></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
      6. SECTEURS D'INTERVENTION
      ========================================================= -->
 <section class="section sectors on-dark" id="secteurs">
@@ -1247,6 +1501,7 @@ svg { display: block; }
       <div>
         <h4>Catalogue</h4>
         <ul>
+          <li><a href="#plus-demandes">Produits les plus demandés</a></li>
           <li><a href="#catalogue">Connectique</a></li>
           <li><a href="#catalogue">Matériel de câblage</a></li>
           <li><a href="#catalogue">Composants d'automatisme</a></li>
@@ -1433,6 +1688,24 @@ svg { display: block; }
     if (e.dataTransfer && e.dataTransfer.files.length) { renderFiles(e.dataTransfer.files); }
   });
   fileInput.addEventListener('change', () => renderFiles(fileInput.files));
+
+  /* --- Produits les plus demandés : quantité et ajout au panier (démo) --- */
+  const cartCount = document.querySelector('.cart-count');
+  document.querySelectorAll('.qty').forEach(q => {
+    const inp = q.querySelector('input');
+    q.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      inp.value = Math.max(1, (parseInt(inp.value, 10) || 1) + parseInt(b.dataset.step, 10));
+    }));
+  });
+  document.querySelectorAll('.add-to-cart').forEach(btn => btn.addEventListener('click', () => {
+    if (btn.dataset.busy) return;
+    const qty = parseInt(btn.closest('.product-actions').querySelector('input').value, 10) || 1;
+    btn.dataset.busy = '1';
+    btn.classList.add('is-added');
+    btn.textContent = 'Ajouté';
+    if (cartCount) cartCount.textContent = (parseInt(cartCount.textContent, 10) || 0) + qty;
+    setTimeout(() => { btn.classList.remove('is-added'); btn.textContent = 'Ajouter'; delete btn.dataset.busy; }, 1600);
+  }));
 
   /* --- Formulaires de démonstration : retour visuel simple --- */
   document.querySelectorAll('form').forEach(form => {
