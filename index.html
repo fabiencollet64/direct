@@ -943,7 +943,16 @@ svg { display: block; }
 
     <div class="sector-grid">
       <article class="sector reveal">
-        <div class="sector-art"><svg viewBox="0 0 120 120"><path d="M10 70 60 50l50 20M60 50V30M40 95l20-45 20 45M30 60l-15 30M90 60l15 30"/><circle cx="60" cy="28" r="4"/></svg></div>
+        <div class="sector-art"><svg viewBox="0 0 120 120">
+          <!-- Avion de ligne en vue de dessus : fuselage, ailes en flèche, réacteurs, empennage -->
+          <g transform="translate(9 0) scale(0.85)">
+            <path d="M60 8c5 0 8 10 8 24v36l40 24v8L68 84v12l12 10v5L60 106l-20 5v-5l12-10V84l-40 16v-8l40-24V32c0-14 3-24 8-24z"/>
+            <path d="M55 26q5-5 10 0"/>
+            <path d="M60 60v46"/>
+            <rect x="30" y="66" width="8" height="16" rx="3"/>
+            <rect x="82" y="66" width="8" height="16" rx="3"/>
+          </g>
+        </svg></div>
         <span class="sector-num mono">01 / AÉRONAUTIQUE</span>
         <h3>Aéronautique</h3>
         <p>Traçabilité lot par lot, certificats de conformité et approvisionnement sous EN 9120. Chaque référence est documentée pour vos dossiers de production.</p>
